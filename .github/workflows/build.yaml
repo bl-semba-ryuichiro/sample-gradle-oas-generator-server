@@ -4,13 +4,19 @@ on:
   push:
     branches:
       - main
+      - release
       - release/*
+      - develop
       - develop/*
+      - feature/*
   pull_request:
     branches:
       - main
+      - release
       - release/*
+      - develop
       - develop/*
+      - feature/*
 
 jobs:
   build:
@@ -20,20 +26,24 @@ jobs:
       contents: read
 
     steps:
-      - uses: actions/checkout@v4
-      - name: Set up JDK 23
+      - name: Start
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
         uses: actions/setup-java@v4
         with:
           java-version: '23'
-          distribution: 'temurin'
+          distribution: 'corretto'
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
+        uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.10.2'
 
       - name: Build with Gradle Wrapper
         run: ./gradlew build
+        env:
+          TZ: Asia/Tokyo
 
   dependency-submission:
 
@@ -42,12 +52,14 @@ jobs:
       contents: write
 
     steps:
-      - uses: actions/checkout@v4
-      - name: Set up JDK 23
+      - name: Start
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
         uses: actions/setup-java@v4
         with:
           java-version: '23'
           distribution: 'temurin'
 
       - name: Generate and submit dependency graph
-        uses: gradle/actions/dependency-submission@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
+        uses: gradle/actions/dependency-submission@v4
