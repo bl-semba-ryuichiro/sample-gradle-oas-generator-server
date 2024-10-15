@@ -1,0 +1,469 @@
+openapi: 3.0.3
+info:
+  title: Gradle OpenAPI Generator Sample
+  description: |-
+    # 概要
+
+    Gradle OpenAPI Generator を使ってみた場合のテスト用API。
+    自動生成されるクラスを確認するため、全ての型を設定している。
+    なお、すべて nullable に設定しているため、リクエスト時には全てのフィールドを省略可能。
+  version: 1.0.0-SNAP-SHOT
+paths:
+  /api/sample-gradle-oas-generator:
+    post:
+      summary: テスト用API
+      operationId: post-v1-sample-gradle-oas-generator
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                description: レスポンス
+                properties:
+                  status:
+                    type: string
+                    description: ステータス
+                required:
+                  - status
+              examples:
+                正常:
+                  value:
+                    status: OK
+      description: |-
+        JsonNullableテスト用のAPI。
+
+        全てのフィールドを以下のように設定する。
+        - nullable: true
+
+        常に`200 OK`を返す。
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: リクエストボディ
+              properties:
+                string_field:
+                  type: string
+                  description: string型のフィールド
+                  nullable: true
+                  example: abc123XYZ
+                string_date_format:
+                  type: string
+                  description: string型(日付フォーマット)のフィールド
+                  format: date
+                  nullable: true
+                  example: '2023-09-01'
+                string_date_time_format:
+                  type: string
+                  description: string型(date_timeフォーマット)のフィールド
+                  format: date-time
+                  nullable: true
+                  example: '2023-09-01T08:45:00+09:00'
+                string_password_format:
+                  type: string
+                  description: string型(passwordフォーマット)のフィールド
+                  format: password
+                  nullable: true
+                  example: password
+                string_byte_format:
+                  type: string
+                  description: string型(byteフォーマット)のフィールド
+                  format: byte
+                  nullable: true
+                  example: U3dhZ2dlciByb2Nrcw==
+                string_binary_format:
+                  type: string
+                  description: string型(binaryフォーマット)のフィールド
+                  format: binary
+                  nullable: true
+                  example: \x00\x00\x00\x04\x00\x00\x00\x04
+                string_email_format:
+                  type: string
+                  description: string型(emailフォーマット)のフィールド
+                  format: email
+                  nullable: true
+                  example: test@example.com
+                string_uuid_format:
+                  type: string
+                  description: string型(uuidフォーマット)のフィールド
+                  format: uuid
+                  nullable: true
+                  example: 12345678-468b-4ae0-a065-7d7ac70b37a8
+                string_uri_format:
+                  type: string
+                  description: string型(uriフォーマット)のフィールド
+                  format: uri
+                  nullable: true
+                  example: 'http://localhost/example'
+                string_hostname_format:
+                  type: string
+                  description: string型(hostnameフォーマット)のフィールド
+                  format: hostname
+                  nullable: true
+                  example: hostname
+                string_ipv4_format:
+                  type: string
+                  description: string型(ipv4フォーマット)のフィールド
+                  format: ipv4
+                  nullable: true
+                  example: 192.0.2.0
+                string_ipv6_format:
+                  type: string
+                  description: string型(ipv6フォーマット)のフィールド
+                  format: ipv6
+                  nullable: true
+                  example: '2001:0db8:1234:5678:90ab:cdef:0000:0000'
+                string_to_enum:
+                  type: string
+                  enum:
+                    - '1'
+                  description: string型(enum)のフィールド
+                  nullable: true
+                  example: '1'
+                int32_field:
+                  type: integer
+                  format: int32
+                  description: int32型のフィールド
+                  nullable: true
+                  example: 2147483647
+                int64_field:
+                  type: integer
+                  format: int64
+                  description: int64型のフィールド
+                  nullable: true
+                  example: 9223372036854776000
+                integer_no_format:
+                  type: integer
+                  description: formatなし integerのフィールド
+                  nullable: true
+                  example: 2147483647
+                float_field:
+                  type: number
+                  format: float
+                  description: float型のフィールド
+                  nullable: true
+                  example: 1.1
+                double_field:
+                  type: number
+                  format: double
+                  description: double型のフィールド
+                  nullable: true
+                  example: 1.2
+                number_no_format:
+                  type: number
+                  description: formatなし numberのフィールド
+                  nullable: true
+                  example: 1.3
+                boolean_field:
+                  type: boolean
+                  description: boolean型のフィールド
+                  nullable: true
+                  example: false
+                string_array_field:
+                  type: array
+                  description: string型の配列フィールド
+                  nullable: true
+                  items:
+                    type: string
+                    nullable: true
+                  example:
+                    - str
+                    - にほんご
+                int_array_field:
+                  type: array
+                  description: int32型の配列フィールド
+                  nullable: true
+                  items:
+                    type: integer
+                    format: int32
+                    nullable: true
+                  example:
+                    - 2147483647
+                    - -2147483648
+                object_array_field:
+                  type: array
+                  description: object型の配列フィールド
+                  nullable: true
+                  items:
+                    type: object
+                    nullable: true
+                    properties:
+                      inner_id:
+                        type: integer
+                        nullable: true
+                      inner_name:
+                        type: string
+                        nullable: true
+                  example:
+                    - inner_id: 1
+                      inner_name: foo
+                    - inner_id: 2
+                      inner_name: baz
+                object_field:
+                  type: object
+                  description: object型のフィールド
+                  nullable: true
+                  properties:
+                    id:
+                      type: integer
+                      nullable: true
+                    name:
+                      type: string
+                      nullable: true
+                  example:
+                    id: 100
+                    name: hoge
+        description: リクエストオブジェクトの説明です
+      tags:
+        - sample-gradle-oas-generator
+    parameters: []
+  /api/sample-gradle-oas-generator-required:
+    post:
+      summary: テスト用API
+      operationId: post-v1-sample-gradle-oas-generator-required
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                description: レスポンス
+                properties:
+                  status:
+                    type: string
+                    description: ステータス
+                required:
+                  - status
+              examples:
+                正常:
+                  value:
+                    status: OK
+      description: |-
+        JsonNullableテスト用のAPI。
+
+        全てのフィールドを以下のように設定する。
+        - nullable: true
+        - required
+
+        常に`200 OK`を返す。
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: リクエストボディ
+              properties:
+                string_field:
+                  type: string
+                  description: string型のフィールド
+                  example: abc123XYZ
+                  nullable: true
+                string_date_format:
+                  type: string
+                  description: string型(日付フォーマット)のフィールド
+                  format: date
+                  example: '2023-09-01'
+                  nullable: true
+                string_date_time_format:
+                  type: string
+                  description: string型(date_timeフォーマット)のフィールド
+                  format: date-time
+                  example: '2023-09-01T08:45:00+09:00'
+                  nullable: true
+                string_password_format:
+                  type: string
+                  description: string型(passwordフォーマット)のフィールド
+                  format: password
+                  example: password
+                  nullable: true
+                string_byte_format:
+                  type: string
+                  description: string型(byteフォーマット)のフィールド
+                  format: byte
+                  example: U3dhZ2dlciByb2Nrcw==
+                  nullable: true
+                string_binary_format:
+                  type: string
+                  description: string型(binaryフォーマット)のフィールド
+                  format: binary
+                  example: \x00\x00\x00\x04\x00\x00\x00\x04
+                  nullable: true
+                string_email_format:
+                  type: string
+                  description: string型(emailフォーマット)のフィールド
+                  format: email
+                  example: test@example.com
+                  nullable: true
+                string_uuid_format:
+                  type: string
+                  description: string型(uuidフォーマット)のフィールド
+                  format: uuid
+                  example: 12345678-468b-4ae0-a065-7d7ac70b37a8
+                  nullable: true
+                string_uri_format:
+                  type: string
+                  description: string型(uriフォーマット)のフィールド
+                  format: uri
+                  example: 'http://localhost/example'
+                  nullable: true
+                string_hostname_format:
+                  type: string
+                  description: string型(hostnameフォーマット)のフィールド
+                  format: hostname
+                  example: hostname
+                  nullable: true
+                string_ipv4_format:
+                  type: string
+                  description: string型(ipv4フォーマット)のフィールド
+                  format: ipv4
+                  example: 192.0.2.0
+                  nullable: true
+                string_ipv6_format:
+                  type: string
+                  description: string型(ipv6フォーマット)のフィールド
+                  format: ipv6
+                  example: '2001:0db8:1234:5678:90ab:cdef:0000:0000'
+                  nullable: true
+                string_to_enum:
+                  type: string
+                  enum:
+                    - '1'
+                  description: string型(enum)のフィールド
+                  example: '1'
+                  nullable: true
+                int32_field:
+                  type: integer
+                  format: int32
+                  description: int32型のフィールド
+                  example: 2147483647
+                  nullable: true
+                int64_field:
+                  type: integer
+                  format: int64
+                  description: int64型のフィールド
+                  example: 9223372036854776000
+                  nullable: true
+                integer_no_format:
+                  type: integer
+                  description: formatなし integerのフィールド
+                  example: 2147483647
+                  nullable: true
+                float_field:
+                  type: number
+                  format: float
+                  description: float型のフィールド
+                  example: 1.1
+                  nullable: true
+                double_field:
+                  type: number
+                  format: double
+                  description: double型のフィールド
+                  example: 1.2
+                  nullable: true
+                number_no_format:
+                  type: number
+                  description: formatなし numberのフィールド
+                  example: 1.3
+                  nullable: true
+                boolean_field:
+                  type: boolean
+                  description: boolean型のフィールド
+                  example: false
+                  nullable: true
+                string_array_field:
+                  type: array
+                  description: string型の配列フィールド
+                  example:
+                    - str
+                    - にほんご
+                  nullable: true
+                  items:
+                    type: string
+                    nullable: true
+                int_array_field:
+                  type: array
+                  description: int32型の配列フィールド
+                  example:
+                    - 2147483647
+                    - -2147483648
+                  nullable: true
+                  items:
+                    type: integer
+                    format: int32
+                    nullable: true
+                object_array_field:
+                  type: array
+                  description: object型の配列フィールド
+                  example:
+                    - inner_id: 1
+                      inner_name: foo
+                    - inner_id: 2
+                      inner_name: baz
+                  nullable: true
+                  items:
+                    type: object
+                    nullable: true
+                    properties:
+                      inner_id:
+                        type: integer
+                        nullable: true
+                      inner_name:
+                        type: string
+                        nullable: true
+                    required:
+                      - inner_id
+                      - inner_name
+                object_field:
+                  type: object
+                  description: object型のフィールド
+                  example:
+                    id: 100
+                    name: hoge
+                  required:
+                    - id
+                    - name
+                  nullable: true
+                  properties:
+                    id:
+                      type: integer
+                      nullable: true
+                    name:
+                      type: string
+                      nullable: true
+              required:
+                - string_field
+                - string_date_format
+                - string_date_time_format
+                - string_password_format
+                - string_binary_format
+                - string_email_format
+                - string_uuid_format
+                - string_uri_format
+                - string_hostname_format
+                - string_ipv4_format
+                - string_ipv6_format
+                - string_to_enum
+                - int32_field
+                - int64_field
+                - integer_no_format
+                - float_field
+                - double_field
+                - number_no_format
+                - boolean_field
+                - string_array_field
+                - int_array_field
+                - object_array_field
+                - object_field
+        description: リクエストオブジェクトの説明です
+      tags:
+        - sample-gradle-oas-generator-required
+    parameters: []
+tags:
+  - name: sample-gradle-oas-generator
+  - name: sample-gradle-oas-generator-required

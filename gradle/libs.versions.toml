@@ -1,0 +1,24 @@
+[versions]
+spring-boot = "3.3.4"
+spring-dependency-management = "1.1.6"
+openapi-generator = "7.9.0"
+swagger-annotations = "2.2.23"
+jackson-datatype-jsr310 = "2.18.0"
+jackson-databind-nullable = "0.2.6"
+commons-io = "2.17.0"
+
+[libraries]
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
+spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test" }
+spring-boot-starter-validation = { module = "org.springframework.boot:spring-boot-starter-validation" }
+spring-boot-starter-web = { module = "org.springframework.boot:spring-boot-starter-web" }
+lombok = { module = "org.projectlombok:lombok" }
+swagger-annotations = { module = "io.swagger.core.v3:swagger-annotations", version.ref = "swagger-annotations" }
+jackson-datatype-jsr310 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", version.ref = "jackson-datatype-jsr310" }
+jackson-databind-nullable = { module = "org.openapitools:jackson-databind-nullable", version.ref = "jackson-databind-nullable" }
+commons-io = { module = "commons-io:commons-io", version.ref = "commons-io" }
+
+[plugins]
+spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
+spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "spring-dependency-management" }
+openapi-generator = { id = "org.openapi.generator", version.ref = "openapi-generator" }

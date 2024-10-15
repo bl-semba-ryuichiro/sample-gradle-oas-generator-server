@@ -1,0 +1,36 @@
+{
+    "string_field": "abc123XYZ",
+    "string_date_format": "2023-09-01",
+    "string_date_time_format": "2023-09-01T08:45:00+09:00",
+    "string_password_format": "password",
+    "string_byte_format": "U3dhZ2dlciByb2Nrcw==",
+    "string_email_format": "test@example.com",
+    "string_uuid_format": "12345678-468b-4ae0-a065-7d7ac70b37a8",
+    "string_uri_format": "http://localhost/example",
+    "string_hostname_format": "hostname",
+    "string_ipv4_format": "256.1.1.1",
+    "string_ipv6_format": "192.0.2.1",
+    "string_to_enum": "1",
+    "int32_field": 2147483647,
+    "int64_field": 9223372036854775807,
+    "integer_no_format": 1,
+    "float_field": 1.2,
+    "double_field": 3.4,
+    "number_no_format": 5.6,
+    "boolean_field": false,
+    "string_array_field": [
+        "str",
+        "にほんご"
+    ],
+    "int_array_field": [
+        2147483647,
+        -2147483648
+    ],
+    "object_array_field": [
+        {
+            "inner_id": 1,
+            "inner_name": "foo"
+        }
+    ],
+    "object_field": null
+}
