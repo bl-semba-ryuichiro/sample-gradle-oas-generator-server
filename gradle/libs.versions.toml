@@ -6,6 +6,7 @@ swagger-annotations = "2.2.23"
 jackson-datatype-jsr310 = "2.18.0"
 jackson-databind-nullable = "0.2.6"
 commons-io = "2.17.0"
+sonarqube = "5.1.0.4882"
 
 [libraries]
 junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
@@ -22,3 +23,4 @@ commons-io = { module = "commons-io:commons-io", version.ref = "commons-io" }
 spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
 spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "spring-dependency-management" }
 openapi-generator = { id = "org.openapi.generator", version.ref = "openapi-generator" }
+sonarqube = { id = "org.sonarqube", version.ref = "sonarqube" }

@@ -2,8 +2,10 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 
 plugins {
     java
+    jacoco
     alias(libs.plugins.spring.boot)
     alias(libs.plugins.spring.dependency.management)
+    alias(libs.plugins.sonarqube)
 
     // Open API
     alias(libs.plugins.openapi.generator)
@@ -131,6 +133,23 @@ sourceSets {
     }
 }
 
+tasks.test {
+    // report is always generated after tests run
+    finalizedBy(tasks.jacocoTestReport)
+}
+tasks.jacocoTestReport {
+    // tests are required to run before generating the report
+    dependsOn(tasks.test)
+}
+
+tasks.jacocoTestReport {
+    reports {
+        xml.required = true
+        html.required = true
+        csv.required = false
+    }
+}
+
 // コンパイル時にOpenAPIの生成ファイルも生成
 tasks.named("compileJava") {
     dependsOn("openApiGenerate")
@@ -139,4 +158,12 @@ tasks.named("compileJava") {
 // clean時にOpenAPIの生成ファイルも削除
 tasks.named("openApiGenerate") {
     dependsOn("clean")
+}
+
+sonar {
+    properties {
+        property("sonar.projectKey", "bl-semba-ryuichiro_sample-gradle-oas-generator")
+        property("sonar.organization", "bl-semba-ryuichiro")
+        property("sonar.host.url", "https://sonarcloud.io")
+    }
 }

@@ -17,6 +17,11 @@ on:
       - develop
       - develop/*
       - feature/*
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
 
 jobs:
   build:
@@ -40,10 +45,26 @@ jobs:
         with:
           gradle-version: '8.10.2'
 
-      - name: Build with Gradle Wrapper
-        run: ./gradlew build
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+
+      - name: Cache Gradle packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+          restore-keys: ${{ runner.os }}-gradle
+
+      - name: Build and analyze
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           TZ: Asia/Tokyo
+        run: ./gradlew build sonar --info
 
   dependency-submission:
 
