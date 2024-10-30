@@ -5,3 +5,7 @@
 ## Overview
 
 OpenAPI Generator (Gradle Plugin) を使った、Spring Boot による Rest API サーバーの自動生成を検証するリポジトリ。
+
+## API 定義書
+
+https://bl-semba-ryuichiro.github.io/sample-gradle-oas-generator-server/
